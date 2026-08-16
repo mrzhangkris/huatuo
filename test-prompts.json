@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "prompt": "审计一下这个技能：{fixture}/planted-skill（一个故意植入 4 处缺陷的最小技能）",
+    "expected": "审计报告命中全部 4 处植入缺陷（坏链接 / weasel 模糊词 / 缺失败模式分支 / 硬编码绝对路径），每条带文件+行号+原句+触发方式四要素，附 findings.json 且通过 validate_findings.py。fixture 由测试时现场生成。"
+  },
+  {
+    "id": 2,
+    "prompt": "看看这个技能写得怎么样？{fixture}/planted-skill",
+    "expected": "识别为审计请求：先答审计前基线 → 跑 audit_lint.py 确定性检查 → 选视角派子代理 → 反证门 → 五级定级 → 修复方案；而不是直接上手改文件（审计与修复分离）。"
+  },
+  {
+    "id": 3,
+    "prompt": "审计一下这个纯脚本库：{fixture}/bare-scripts（只有 .py 文件，没有任何 SKILL.md/文档）",
+    "expected": "按失败模式分支处理：以代码为现场、文档维度改为「脚本间调用关系」，audit_lint.py 对非技能目录给出明确报错而非崩溃，全程不卡死。"
+  }
+]

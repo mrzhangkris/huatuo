@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "skill-audit findings",
+  "type": "object",
+  "required": ["skill", "audited_at", "findings"],
+  "properties": {
+    "skill": { "type": "string", "description": "被审计技能名" },
+    "audited_at": { "type": "string", "description": "审计时间（ISO 日期）" },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "file", "line", "quote", "trigger", "fix", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "severity": { "enum": ["blocker", "high", "medium", "low", "info"] },
+          "file": { "type": "string" },
+          "line": { "type": "integer" },
+          "quote": { "type": "string", "description": "原句/原代码逐字摘录" },
+          "trigger": { "type": "string", "description": "怎么验证它存在（跑什么命令/读什么字段出现什么）" },
+          "fix": { "type": "string" },
+          "status": { "enum": ["open", "fixed", "refuted", "deferred"] }
+        }
+      }
+    }
+  }
+}
